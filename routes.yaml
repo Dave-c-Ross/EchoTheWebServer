@@ -1,0 +1,16 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: echo-server
+  namespace: addon-config
+  labels:
+    app: echo-server
+spec:
+  host: echo-server-addon-config.apps.maindeck.fleetcarrier.ca
+  to:
+    kind: Service
+    name: echo-server
+    weight: 100
+  port:
+    targetPort: 8080
+  wildcardPolicy: None
