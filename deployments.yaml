@@ -7,7 +7,7 @@ data:
   index.php: |
     <?PHP echo "Hello"; ?>
   index.html: |
-    <H1>Hello</H1>
+    <H1>Hello Hello !</H1>
 
 ---
 
@@ -87,6 +87,27 @@ spec:
         - mountPath: /var/www/html
           name: www
 
+      env:
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: MY_POD_SERVICE_ACCOUNT
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.serviceAccountName
 
       dnsPolicy: ClusterFirst
 
